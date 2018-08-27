@@ -12,6 +12,8 @@ import (
 	"net/url"
 	"os"
 
+	"github.com/labd/commercetools-go-sdk/cterrors"
+
 	"github.com/hashicorp/go-cleanhttp"
 	"github.com/labd/commercetools-go-sdk/commercetools/credentials"
 )
@@ -140,11 +142,18 @@ func processErrorResponse(statusCode int, body []byte) error {
 	st := http.StatusText(statusCode)
 	if err == nil {
 		if val, ok := data["message"]; ok {
-			return fmt.Errorf("HTTP %s: %s", st, val.(string))
+			return cterrors.NewRequestError(
+				fmt.Sprintf("HTTP %s: %s", st, val.(string)),
+				statusCode)
 		}
-		return fmt.Errorf("HTTP %s: %s", st, string(body))
+
+		return cterrors.NewRequestError(
+			fmt.Sprintf("HTTP %s: %s", st, string(body)),
+			statusCode)
 	}
-	return fmt.Errorf("HTTP %s: %v", st, err)
+	return cterrors.NewRequestError(
+		fmt.Sprintf("HTTP %s: %v", st, err),
+		statusCode)
 }
 
 func serializeInput(input interface{}) (io.Reader, error) {

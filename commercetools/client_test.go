@@ -26,7 +26,7 @@ func TestClientGetBadRequestJson(t *testing.T) {
 	output := OutputData{}
 
 	err := client.Get("/", nil, &output)
-	assert.Equal(t, "HTTP Bad Request: {}", err.Error())
+	assert.Equal(t, "400: HTTP Bad Request: {}", err.Error())
 }
 
 func TestClientGetBadRequestStructuredJson(t *testing.T) {
@@ -42,5 +42,5 @@ func TestClientGetBadRequestStructuredJson(t *testing.T) {
 	output := OutputData{}
 
 	err = client.Get("/", nil, &output)
-	assert.Equal(t, "HTTP Bad Request: Failure reason", err.Error())
+	assert.Equal(t, "400: HTTP Bad Request: Failure reason", err.Error())
 }
