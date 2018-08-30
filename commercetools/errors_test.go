@@ -1,4 +1,4 @@
-package cterrors
+package commercetools
 
 import (
 	"testing"

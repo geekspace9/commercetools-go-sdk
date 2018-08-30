@@ -12,8 +12,6 @@ import (
 	"net/url"
 	"os"
 
-	"github.com/labd/commercetools-go-sdk/cterrors"
-
 	"github.com/hashicorp/go-cleanhttp"
 	"github.com/labd/commercetools-go-sdk/commercetools/credentials"
 )
@@ -140,19 +138,22 @@ func processErrorResponse(statusCode int, body []byte) error {
 	data := make(map[string]interface{})
 	err := json.Unmarshal(body, &data)
 	st := http.StatusText(statusCode)
-	if err == nil {
-		if val, ok := data["message"]; ok {
-			return cterrors.NewRequestError(
-				fmt.Sprintf("HTTP %s: %s", st, val.(string)),
-				statusCode)
-		}
 
-		return cterrors.NewRequestError(
-			fmt.Sprintf("HTTP %s: %s", st, string(body)),
+	if err != nil {
+		return newRequestError(
+			fmt.Sprintf("HTTP %s: %v", st, err),
 			statusCode)
 	}
-	return cterrors.NewRequestError(
-		fmt.Sprintf("HTTP %s: %v", st, err),
+
+	if val, ok := data["message"]; ok {
+		// TODO: Return an ApplicationError
+		return newRequestError(
+			fmt.Sprintf("HTTP %s: %s", st, val.(string)),
+			statusCode)
+	}
+
+	return newRequestError(
+		fmt.Sprintf("HTTP %s: %s", st, string(body)),
 		statusCode)
 }
 
