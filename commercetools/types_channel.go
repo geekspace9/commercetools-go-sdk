@@ -98,12 +98,6 @@ func mapDiscriminatorChannelUpdateAction(input interface{}) (ChannelUpdateAction
 		if err != nil {
 			return nil, err
 		}
-		if new.GeoLocation != nil {
-			new.GeoLocation, err = mapDiscriminatorGeoJSON(new.GeoLocation)
-			if err != nil {
-				return nil, err
-			}
-		}
 		return new, nil
 	case "setRoles":
 		new := ChannelSetRolesAction{}
@@ -116,40 +110,22 @@ func mapDiscriminatorChannelUpdateAction(input interface{}) (ChannelUpdateAction
 	return nil, nil
 }
 
-// Channel is of type BaseResource
+// Channel is of type LoggedResource
 type Channel struct {
 	Version                int                     `json:"version"`
+	LastModifiedAt         time.Time               `json:"lastModifiedAt"`
+	ID                     string                  `json:"id"`
+	CreatedAt              time.Time               `json:"createdAt"`
+	LastModifiedBy         *LastModifiedBy         `json:"lastModifiedBy,omitempty"`
+	CreatedBy              *CreatedBy              `json:"createdBy,omitempty"`
 	Roles                  []ChannelRoleEnum       `json:"roles"`
 	ReviewRatingStatistics *ReviewRatingStatistics `json:"reviewRatingStatistics,omitempty"`
 	Name                   *LocalizedString        `json:"name,omitempty"`
-	LastModifiedBy         *LastModifiedBy         `json:"lastModifiedBy,omitempty"`
-	LastModifiedAt         time.Time               `json:"lastModifiedAt"`
 	Key                    string                  `json:"key"`
-	ID                     string                  `json:"id"`
-	GeoLocation            GeoJSON                 `json:"geoLocation,omitempty"`
+	GeoLocation            *GeoJSONPoint           `json:"geoLocation,omitempty"`
 	Description            *LocalizedString        `json:"description,omitempty"`
 	Custom                 *CustomFields           `json:"custom,omitempty"`
-	CreatedBy              *CreatedBy              `json:"createdBy,omitempty"`
-	CreatedAt              time.Time               `json:"createdAt"`
 	Address                *Address                `json:"address,omitempty"`
-}
-
-// UnmarshalJSON override to deserialize correct attribute types based
-// on the discriminator value
-func (obj *Channel) UnmarshalJSON(data []byte) error {
-	type Alias Channel
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
-		return err
-	}
-	if obj.GeoLocation != nil {
-		var err error
-		obj.GeoLocation, err = mapDiscriminatorGeoJSON(obj.GeoLocation)
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
 }
 
 // ChannelAddRolesAction implements the interface ChannelUpdateAction
@@ -213,28 +189,10 @@ type ChannelDraft struct {
 	Roles       []ChannelRoleEnum  `json:"roles,omitempty"`
 	Name        *LocalizedString   `json:"name,omitempty"`
 	Key         string             `json:"key"`
-	GeoLocation GeoJSON            `json:"geoLocation,omitempty"`
+	GeoLocation *GeoJSONPoint      `json:"geoLocation,omitempty"`
 	Description *LocalizedString   `json:"description,omitempty"`
 	Custom      *CustomFieldsDraft `json:"custom,omitempty"`
 	Address     *Address           `json:"address,omitempty"`
-}
-
-// UnmarshalJSON override to deserialize correct attribute types based
-// on the discriminator value
-func (obj *ChannelDraft) UnmarshalJSON(data []byte) error {
-	type Alias ChannelDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
-		return err
-	}
-	if obj.GeoLocation != nil {
-		var err error
-		obj.GeoLocation, err = mapDiscriminatorGeoJSON(obj.GeoLocation)
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
 }
 
 // ChannelPagedQueryResponse is a standalone struct
@@ -242,7 +200,6 @@ type ChannelPagedQueryResponse struct {
 	Total   int       `json:"total,omitempty"`
 	Results []Channel `json:"results"`
 	Offset  int       `json:"offset"`
-	Limit   int       `json:"limit"`
 	Count   int       `json:"count"`
 }
 
@@ -336,7 +293,7 @@ func (obj ChannelSetCustomTypeAction) MarshalJSON() ([]byte, error) {
 
 // ChannelSetGeoLocationAction implements the interface ChannelUpdateAction
 type ChannelSetGeoLocationAction struct {
-	GeoLocation GeoJSON `json:"geoLocation,omitempty"`
+	GeoLocation *GeoJSONPoint `json:"geoLocation,omitempty"`
 }
 
 // MarshalJSON override to set the discriminator value
@@ -346,24 +303,6 @@ func (obj ChannelSetGeoLocationAction) MarshalJSON() ([]byte, error) {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setGeoLocation", Alias: (*Alias)(&obj)})
-}
-
-// UnmarshalJSON override to deserialize correct attribute types based
-// on the discriminator value
-func (obj *ChannelSetGeoLocationAction) UnmarshalJSON(data []byte) error {
-	type Alias ChannelSetGeoLocationAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
-		return err
-	}
-	if obj.GeoLocation != nil {
-		var err error
-		obj.GeoLocation, err = mapDiscriminatorGeoJSON(obj.GeoLocation)
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
 }
 
 // ChannelSetRolesAction implements the interface ChannelUpdateAction

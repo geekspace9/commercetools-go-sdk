@@ -38,13 +38,11 @@ func mapDiscriminatorStoreUpdateAction(input interface{}) (StoreUpdateAction, er
 // Store is of type BaseResource
 type Store struct {
 	Version        int              `json:"version"`
-	Name           *LocalizedString `json:"name,omitempty"`
-	LastModifiedBy *LastModifiedBy  `json:"lastModifiedBy,omitempty"`
 	LastModifiedAt time.Time        `json:"lastModifiedAt"`
-	Key            string           `json:"key"`
 	ID             string           `json:"id"`
-	CreatedBy      *CreatedBy       `json:"createdBy,omitempty"`
 	CreatedAt      time.Time        `json:"createdAt"`
+	Name           *LocalizedString `json:"name,omitempty"`
+	Key            string           `json:"key"`
 }
 
 // StoreDraft is a standalone struct
@@ -72,7 +70,6 @@ type StorePagedQueryResponse struct {
 	Total   int     `json:"total,omitempty"`
 	Results []Store `json:"results"`
 	Offset  int     `json:"offset"`
-	Limit   int     `json:"limit"`
 	Count   int     `json:"count"`
 }
 

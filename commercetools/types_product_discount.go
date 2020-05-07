@@ -59,7 +59,7 @@ func mapDiscriminatorProductDiscountUpdateAction(input interface{}) (ProductDisc
 			return nil, err
 		}
 		if new.Value != nil {
-			new.Value, err = mapDiscriminatorProductDiscountValueDraft(new.Value)
+			new.Value, err = mapDiscriminatorProductDiscountValue(new.Value)
 			if err != nil {
 				return nil, err
 			}
@@ -124,9 +124,6 @@ func mapDiscriminatorProductDiscountValue(input interface{}) (ProductDiscountVal
 		if err != nil {
 			return nil, err
 		}
-		for i := range new.Money {
-			new.Money[i], err = mapDiscriminatorTypedMoney(new.Money[i])
-		}
 		return new, nil
 	case "external":
 		new := ProductDiscountValueExternal{}
@@ -146,48 +143,14 @@ func mapDiscriminatorProductDiscountValue(input interface{}) (ProductDiscountVal
 	return nil, nil
 }
 
-// ProductDiscountValueDraft uses type as discriminator attribute
-type ProductDiscountValueDraft interface{}
-
-func mapDiscriminatorProductDiscountValueDraft(input interface{}) (ProductDiscountValueDraft, error) {
-	var discriminator string
-	if data, ok := input.(map[string]interface{}); ok {
-		discriminator, ok = data["type"].(string)
-		if !ok {
-			return nil, errors.New("Error processing discriminator field 'type'")
-		}
-	} else {
-		return nil, errors.New("Invalid data")
-	}
-	switch discriminator {
-	case "absolute":
-		new := ProductDiscountValueAbsoluteDraft{}
-		err := mapstructure.Decode(input, &new)
-		if err != nil {
-			return nil, err
-		}
-		return new, nil
-	case "external":
-		new := ProductDiscountValueExternalDraft{}
-		err := mapstructure.Decode(input, &new)
-		if err != nil {
-			return nil, err
-		}
-		return new, nil
-	case "relative":
-		new := ProductDiscountValueRelativeDraft{}
-		err := mapstructure.Decode(input, &new)
-		if err != nil {
-			return nil, err
-		}
-		return new, nil
-	}
-	return nil, nil
-}
-
-// ProductDiscount is of type BaseResource
+// ProductDiscount is of type LoggedResource
 type ProductDiscount struct {
 	Version        int                  `json:"version"`
+	LastModifiedAt time.Time            `json:"lastModifiedAt"`
+	ID             string               `json:"id"`
+	CreatedAt      time.Time            `json:"createdAt"`
+	LastModifiedBy *LastModifiedBy      `json:"lastModifiedBy,omitempty"`
+	CreatedBy      *CreatedBy           `json:"createdBy,omitempty"`
 	Value          ProductDiscountValue `json:"value"`
 	ValidUntil     *time.Time           `json:"validUntil,omitempty"`
 	ValidFrom      *time.Time           `json:"validFrom,omitempty"`
@@ -195,14 +158,9 @@ type ProductDiscount struct {
 	References     []Reference          `json:"references"`
 	Predicate      string               `json:"predicate"`
 	Name           *LocalizedString     `json:"name"`
-	LastModifiedBy *LastModifiedBy      `json:"lastModifiedBy,omitempty"`
-	LastModifiedAt time.Time            `json:"lastModifiedAt"`
 	Key            string               `json:"key,omitempty"`
 	IsActive       bool                 `json:"isActive"`
-	ID             string               `json:"id"`
 	Description    *LocalizedString     `json:"description,omitempty"`
-	CreatedBy      *CreatedBy           `json:"createdBy,omitempty"`
-	CreatedAt      time.Time            `json:"createdAt"`
 }
 
 // UnmarshalJSON override to deserialize correct attribute types based
@@ -288,7 +246,7 @@ func (obj ProductDiscountChangeSortOrderAction) MarshalJSON() ([]byte, error) {
 
 // ProductDiscountChangeValueAction implements the interface ProductDiscountUpdateAction
 type ProductDiscountChangeValueAction struct {
-	Value ProductDiscountValueDraft `json:"value"`
+	Value ProductDiscountValue `json:"value"`
 }
 
 // MarshalJSON override to set the discriminator value
@@ -309,7 +267,7 @@ func (obj *ProductDiscountChangeValueAction) UnmarshalJSON(data []byte) error {
 	}
 	if obj.Value != nil {
 		var err error
-		obj.Value, err = mapDiscriminatorProductDiscountValueDraft(obj.Value)
+		obj.Value, err = mapDiscriminatorProductDiscountValue(obj.Value)
 		if err != nil {
 			return err
 		}
@@ -320,15 +278,15 @@ func (obj *ProductDiscountChangeValueAction) UnmarshalJSON(data []byte) error {
 
 // ProductDiscountDraft is a standalone struct
 type ProductDiscountDraft struct {
-	Value       ProductDiscountValueDraft `json:"value"`
-	ValidUntil  *time.Time                `json:"validUntil,omitempty"`
-	ValidFrom   *time.Time                `json:"validFrom,omitempty"`
-	SortOrder   string                    `json:"sortOrder"`
-	Predicate   string                    `json:"predicate"`
-	Name        *LocalizedString          `json:"name"`
-	Key         string                    `json:"key,omitempty"`
-	IsActive    bool                      `json:"isActive"`
-	Description *LocalizedString          `json:"description,omitempty"`
+	Value       ProductDiscountValue `json:"value"`
+	ValidUntil  *time.Time           `json:"validUntil,omitempty"`
+	ValidFrom   *time.Time           `json:"validFrom,omitempty"`
+	SortOrder   string               `json:"sortOrder"`
+	Predicate   string               `json:"predicate"`
+	Name        *LocalizedString     `json:"name"`
+	Key         string               `json:"key,omitempty"`
+	IsActive    bool                 `json:"isActive"`
+	Description *LocalizedString     `json:"description,omitempty"`
 }
 
 // UnmarshalJSON override to deserialize correct attribute types based
@@ -340,7 +298,7 @@ func (obj *ProductDiscountDraft) UnmarshalJSON(data []byte) error {
 	}
 	if obj.Value != nil {
 		var err error
-		obj.Value, err = mapDiscriminatorProductDiscountValueDraft(obj.Value)
+		obj.Value, err = mapDiscriminatorProductDiscountValue(obj.Value)
 		if err != nil {
 			return err
 		}
@@ -351,10 +309,10 @@ func (obj *ProductDiscountDraft) UnmarshalJSON(data []byte) error {
 
 // ProductDiscountMatchQuery is a standalone struct
 type ProductDiscountMatchQuery struct {
-	VariantID float64     `json:"variantId"`
-	Staged    bool        `json:"staged"`
-	ProductID string      `json:"productId"`
-	Price     *QueryPrice `json:"price"`
+	VariantID float64 `json:"variantId"`
+	Staged    bool    `json:"staged"`
+	ProductID string  `json:"productId"`
+	Price     *Price  `json:"price"`
 }
 
 // ProductDiscountPagedQueryResponse is a standalone struct
@@ -362,7 +320,6 @@ type ProductDiscountPagedQueryResponse struct {
 	Total   int               `json:"total,omitempty"`
 	Results []ProductDiscount `json:"results"`
 	Offset  int               `json:"offset"`
-	Limit   int               `json:"limit"`
 	Count   int               `json:"count"`
 }
 
@@ -493,44 +450,12 @@ func (obj *ProductDiscountUpdate) UnmarshalJSON(data []byte) error {
 
 // ProductDiscountValueAbsolute implements the interface ProductDiscountValue
 type ProductDiscountValueAbsolute struct {
-	Money []TypedMoney `json:"money"`
+	Money []Money `json:"money"`
 }
 
 // MarshalJSON override to set the discriminator value
 func (obj ProductDiscountValueAbsolute) MarshalJSON() ([]byte, error) {
 	type Alias ProductDiscountValueAbsolute
-	return json.Marshal(struct {
-		Type string `json:"type"`
-		*Alias
-	}{Type: "absolute", Alias: (*Alias)(&obj)})
-}
-
-// UnmarshalJSON override to deserialize correct attribute types based
-// on the discriminator value
-func (obj *ProductDiscountValueAbsolute) UnmarshalJSON(data []byte) error {
-	type Alias ProductDiscountValueAbsolute
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
-		return err
-	}
-	for i := range obj.Money {
-		var err error
-		obj.Money[i], err = mapDiscriminatorTypedMoney(obj.Money[i])
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ProductDiscountValueAbsoluteDraft implements the interface ProductDiscountValueDraft
-type ProductDiscountValueAbsoluteDraft struct {
-	Money []Money `json:"money"`
-}
-
-// MarshalJSON override to set the discriminator value
-func (obj ProductDiscountValueAbsoluteDraft) MarshalJSON() ([]byte, error) {
-	type Alias ProductDiscountValueAbsoluteDraft
 	return json.Marshal(struct {
 		Type string `json:"type"`
 		*Alias
@@ -549,18 +474,6 @@ func (obj ProductDiscountValueExternal) MarshalJSON() ([]byte, error) {
 	}{Type: "external", Alias: (*Alias)(&obj)})
 }
 
-// ProductDiscountValueExternalDraft implements the interface ProductDiscountValueDraft
-type ProductDiscountValueExternalDraft struct{}
-
-// MarshalJSON override to set the discriminator value
-func (obj ProductDiscountValueExternalDraft) MarshalJSON() ([]byte, error) {
-	type Alias ProductDiscountValueExternalDraft
-	return json.Marshal(struct {
-		Type string `json:"type"`
-		*Alias
-	}{Type: "external", Alias: (*Alias)(&obj)})
-}
-
 // ProductDiscountValueRelative implements the interface ProductDiscountValue
 type ProductDiscountValueRelative struct {
 	Permyriad int `json:"permyriad"`
@@ -569,20 +482,6 @@ type ProductDiscountValueRelative struct {
 // MarshalJSON override to set the discriminator value
 func (obj ProductDiscountValueRelative) MarshalJSON() ([]byte, error) {
 	type Alias ProductDiscountValueRelative
-	return json.Marshal(struct {
-		Type string `json:"type"`
-		*Alias
-	}{Type: "relative", Alias: (*Alias)(&obj)})
-}
-
-// ProductDiscountValueRelativeDraft implements the interface ProductDiscountValueDraft
-type ProductDiscountValueRelativeDraft struct {
-	Permyriad int `json:"permyriad"`
-}
-
-// MarshalJSON override to set the discriminator value
-func (obj ProductDiscountValueRelativeDraft) MarshalJSON() ([]byte, error) {
-	type Alias ProductDiscountValueRelativeDraft
 	return json.Marshal(struct {
 		Type string `json:"type"`
 		*Alias

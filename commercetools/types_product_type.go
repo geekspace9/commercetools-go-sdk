@@ -574,17 +574,17 @@ func (obj AttributeTimeType) MarshalJSON() ([]byte, error) {
 	}{Name: "time", Alias: (*Alias)(&obj)})
 }
 
-// ProductType is of type BaseResource
+// ProductType is of type LoggedResource
 type ProductType struct {
 	Version        int                   `json:"version"`
-	Name           string                `json:"name"`
-	LastModifiedBy *LastModifiedBy       `json:"lastModifiedBy,omitempty"`
 	LastModifiedAt time.Time             `json:"lastModifiedAt"`
-	Key            string                `json:"key,omitempty"`
 	ID             string                `json:"id"`
-	Description    string                `json:"description"`
-	CreatedBy      *CreatedBy            `json:"createdBy,omitempty"`
 	CreatedAt      time.Time             `json:"createdAt"`
+	LastModifiedBy *LastModifiedBy       `json:"lastModifiedBy,omitempty"`
+	CreatedBy      *CreatedBy            `json:"createdBy,omitempty"`
+	Name           string                `json:"name"`
+	Key            string                `json:"key,omitempty"`
+	Description    string                `json:"description"`
 	Attributes     []AttributeDefinition `json:"attributes,omitempty"`
 }
 
@@ -852,7 +852,6 @@ type ProductTypePagedQueryResponse struct {
 	Total   int           `json:"total,omitempty"`
 	Results []ProductType `json:"results"`
 	Offset  int           `json:"offset"`
-	Limit   int           `json:"limit"`
 	Count   int           `json:"count"`
 }
 

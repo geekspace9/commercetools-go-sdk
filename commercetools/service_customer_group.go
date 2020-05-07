@@ -41,7 +41,7 @@ func (client *Client) CustomerGroupDeleteWithKey(key string, version int) (resul
 	return result, nil
 }
 
-// CustomerGroupGetWithKey Gets a customer group by Key.
+// CustomerGroupGetWithKey for type CustomerGroup
 func (client *Client) CustomerGroupGetWithKey(key string) (result *CustomerGroup, err error) {
 	err = client.Get(strings.Replace("customer-groups/key={key}", "{key}", key, 1), nil, &result)
 	if err != nil {
@@ -57,7 +57,7 @@ type CustomerGroupUpdateWithKeyInput struct {
 	Actions []CustomerGroupUpdateAction
 }
 
-// CustomerGroupUpdateWithKey Updates a customer group by Key.
+// CustomerGroupUpdateWithKey for type CustomerGroup
 func (client *Client) CustomerGroupUpdateWithKey(input *CustomerGroupUpdateWithKeyInput) (result *CustomerGroup, err error) {
 	err = client.Update(strings.Replace("customer-groups/key={key}", "{key}", input.Key, 1), nil, input.Version, input.Actions, &result)
 	if err != nil {

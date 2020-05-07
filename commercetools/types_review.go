@@ -111,9 +111,14 @@ func mapDiscriminatorReviewUpdateAction(input interface{}) (ReviewUpdateAction, 
 	return nil, nil
 }
 
-// Review is of type BaseResource
+// Review is of type LoggedResource
 type Review struct {
 	Version              int                `json:"version"`
+	LastModifiedAt       time.Time          `json:"lastModifiedAt"`
+	ID                   string             `json:"id"`
+	CreatedAt            time.Time          `json:"createdAt"`
+	LastModifiedBy       *LastModifiedBy    `json:"lastModifiedBy,omitempty"`
+	CreatedBy            *CreatedBy         `json:"createdBy,omitempty"`
 	UniquenessValue      string             `json:"uniquenessValue,omitempty"`
 	Title                string             `json:"title,omitempty"`
 	Text                 string             `json:"text,omitempty"`
@@ -121,15 +126,10 @@ type Review struct {
 	State                *StateReference    `json:"state,omitempty"`
 	Rating               float64            `json:"rating,omitempty"`
 	Locale               string             `json:"locale,omitempty"`
-	LastModifiedBy       *LastModifiedBy    `json:"lastModifiedBy,omitempty"`
-	LastModifiedAt       time.Time          `json:"lastModifiedAt"`
 	Key                  string             `json:"key,omitempty"`
 	IncludedInStatistics bool               `json:"includedInStatistics"`
-	ID                   string             `json:"id"`
 	Customer             *CustomerReference `json:"customer,omitempty"`
 	Custom               *CustomFields      `json:"custom,omitempty"`
-	CreatedBy            *CreatedBy         `json:"createdBy,omitempty"`
-	CreatedAt            time.Time          `json:"createdAt"`
 	AuthorName           string             `json:"authorName,omitempty"`
 }
 
@@ -189,7 +189,6 @@ type ReviewPagedQueryResponse struct {
 	Total   int      `json:"total,omitempty"`
 	Results []Review `json:"results"`
 	Offset  int      `json:"offset"`
-	Limit   int      `json:"limit"`
 	Count   int      `json:"count"`
 }
 

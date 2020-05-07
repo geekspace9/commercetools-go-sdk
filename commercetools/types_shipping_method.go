@@ -97,13 +97,6 @@ func mapDiscriminatorShippingMethodUpdateAction(input interface{}) (ShippingMeth
 			return nil, err
 		}
 		return new, nil
-	case "setLocalizedDescription":
-		new := ShippingMethodSetLocalizedDescriptionAction{}
-		err := mapstructure.Decode(input, &new)
-		if err != nil {
-			return nil, err
-		}
-		return new, nil
 	case "setPredicate":
 		new := ShippingMethodSetPredicateAction{}
 		err := mapstructure.Decode(input, &new)
@@ -211,20 +204,17 @@ type PriceFunction struct {
 
 // ShippingMethod is of type BaseResource
 type ShippingMethod struct {
-	ZoneRates            []ZoneRate            `json:"zoneRates"`
-	Version              int                   `json:"version"`
-	TaxCategory          *TaxCategoryReference `json:"taxCategory"`
-	Predicate            string                `json:"predicate,omitempty"`
-	Name                 string                `json:"name"`
-	LocalizedDescription *LocalizedString      `json:"localizedDescription,omitempty"`
-	LastModifiedBy       *LastModifiedBy       `json:"lastModifiedBy,omitempty"`
-	LastModifiedAt       time.Time             `json:"lastModifiedAt"`
-	Key                  string                `json:"key,omitempty"`
-	IsDefault            bool                  `json:"isDefault"`
-	ID                   string                `json:"id"`
-	Description          string                `json:"description,omitempty"`
-	CreatedBy            *CreatedBy            `json:"createdBy,omitempty"`
-	CreatedAt            time.Time             `json:"createdAt"`
+	Version        int                   `json:"version"`
+	LastModifiedAt time.Time             `json:"lastModifiedAt"`
+	ID             string                `json:"id"`
+	CreatedAt      time.Time             `json:"createdAt"`
+	ZoneRates      []ZoneRate            `json:"zoneRates"`
+	TaxCategory    *TaxCategoryReference `json:"taxCategory"`
+	Predicate      string                `json:"predicate,omitempty"`
+	Name           string                `json:"name"`
+	Key            string                `json:"key,omitempty"`
+	IsDefault      bool                  `json:"isDefault"`
+	Description    string                `json:"description,omitempty"`
 }
 
 // ShippingMethodAddShippingRateAction implements the interface ShippingMethodUpdateAction
@@ -300,14 +290,13 @@ func (obj ShippingMethodChangeTaxCategoryAction) MarshalJSON() ([]byte, error) {
 
 // ShippingMethodDraft is a standalone struct
 type ShippingMethodDraft struct {
-	ZoneRates            []ZoneRateDraft                `json:"zoneRates"`
-	TaxCategory          *TaxCategoryResourceIdentifier `json:"taxCategory"`
-	Predicate            string                         `json:"predicate,omitempty"`
-	Name                 string                         `json:"name"`
-	LocalizedDescription *LocalizedString               `json:"localizedDescription,omitempty"`
-	Key                  string                         `json:"key,omitempty"`
-	IsDefault            bool                           `json:"isDefault"`
-	Description          string                         `json:"description,omitempty"`
+	ZoneRates   []ZoneRateDraft                `json:"zoneRates"`
+	TaxCategory *TaxCategoryResourceIdentifier `json:"taxCategory"`
+	Predicate   string                         `json:"predicate,omitempty"`
+	Name        string                         `json:"name"`
+	Key         string                         `json:"key,omitempty"`
+	IsDefault   bool                           `json:"isDefault"`
+	Description string                         `json:"description,omitempty"`
 }
 
 // ShippingMethodPagedQueryResponse is a standalone struct
@@ -315,7 +304,6 @@ type ShippingMethodPagedQueryResponse struct {
 	Total   int              `json:"total,omitempty"`
 	Results []ShippingMethod `json:"results"`
 	Offset  int              `json:"offset"`
-	Limit   int              `json:"limit"`
 	Count   int              `json:"count"`
 }
 
@@ -404,20 +392,6 @@ func (obj ShippingMethodSetKeyAction) MarshalJSON() ([]byte, error) {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setKey", Alias: (*Alias)(&obj)})
-}
-
-// ShippingMethodSetLocalizedDescriptionAction implements the interface ShippingMethodUpdateAction
-type ShippingMethodSetLocalizedDescriptionAction struct {
-	LocalizedDescription string `json:"localizedDescription,omitempty"`
-}
-
-// MarshalJSON override to set the discriminator value
-func (obj ShippingMethodSetLocalizedDescriptionAction) MarshalJSON() ([]byte, error) {
-	type Alias ShippingMethodSetLocalizedDescriptionAction
-	return json.Marshal(struct {
-		Action string `json:"action"`
-		*Alias
-	}{Action: "setLocalizedDescription", Alias: (*Alias)(&obj)})
 }
 
 // ShippingMethodSetPredicateAction implements the interface ShippingMethodUpdateAction
