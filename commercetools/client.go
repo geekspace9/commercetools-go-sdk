@@ -12,6 +12,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/opentracing-contrib/go-stdlib/nethttp"
+	"github.com/opentracing/opentracing-go"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
@@ -41,6 +43,7 @@ type ClientConfig struct {
 	LibraryVersion string
 	ContactURL     string
 	ContactEmail   string
+	Tracer         opentracing.Tracer
 }
 
 // Config is used to pass settings for creating a new Client object
@@ -62,6 +65,8 @@ type Client struct {
 	projectKey string
 	logLevel   int
 	userAgent  string
+
+	tracer opentracing.Tracer
 }
 
 // NewClient creates a new client based on the provided ClientConfig
@@ -104,6 +109,7 @@ func NewClient(cfg *ClientConfig) (*Client, error) {
 		endpoints:  *cfg.Endpoints,
 		httpClient: httpClient,
 		userAgent:  GetUserAgent(cfg),
+		tracer:     cfg.Tracer,
 	}
 
 	if os.Getenv("CTP_DEBUG") != "" {
@@ -251,6 +257,11 @@ func (c *Client) getResponse(ctx context.Context, method string, url string, par
 		logRequest(req)
 	}
 
+	if c.tracer != nil {
+		var ht *nethttp.Tracer
+		req, ht = nethttp.TraceRequest(c.tracer, req)
+		defer ht.Finish()
+	}
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
 		return nil, handleAuthError(err)
