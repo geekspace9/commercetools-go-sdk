@@ -183,6 +183,11 @@ func (c *Client) ProjectKey() string {
 	return c.projectKey
 }
 
+// HTTPClient returns the used http.Client instance.
+func (c *Client) HTTPClient() *http.Client {
+	return c.httpClient
+}
+
 // Get accomodates get requests tot the CommerceTools platform.
 func (c *Client) get(ctx context.Context, endpoint string, queryParams url.Values, output interface{}) error {
 	err := c.doRequest(ctx, "GET", endpoint, queryParams, nil, output)
