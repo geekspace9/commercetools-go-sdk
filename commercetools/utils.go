@@ -4,6 +4,7 @@ import (
 	"net/url"
 	"reflect"
 	"regexp"
+	"sort"
 	"time"
 
 	"github.com/appscode/go-querystring/query"
@@ -18,12 +19,18 @@ var (
 func serializeQueryParams(v interface{}) url.Values {
 	values, _ := query.Values(v)
 
+	keys := make([]string, 0, len(values))
+	for key := range values {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+
 	newValues := url.Values{}
-	for key, values := range values {
+	for _, key := range keys {
 		// TODO: this is pretty ugly and should be fixed upstream
 		newKey := reSlice.ReplaceAllString(key, "$1")
 		newKey = reMap.ReplaceAllString(newKey, "$1.$2")
-		for _, value := range values {
+		for _, value := range values[key] {
 			newValues.Add(newKey, value)
 		}
 	}
