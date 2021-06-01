@@ -70,6 +70,7 @@ type ProductProjectionSearchInput struct {
 	FuzzyLevel           float64           `url:"fuzzyLevel,omitempty"`
 	MarkMatchingVariants bool              `url:"markMatchingVariants,omitempty"`
 	Staged               bool              `url:"staged,omitempty"`
+	Sort                 []string          `url:"sort,omitempty"`
 	Limit                float64           `url:"limit,omitempty"`
 	Offset               float64           `url:"offset,omitempty"`
 	WithTotal            bool              `url:"withTotal,omitempty"`
@@ -107,6 +108,7 @@ type ProductProjectionSuggestInput struct {
 	SearchKeywords map[string]string `url:"searchKeywords"`
 	Fuzzy          bool              `url:"fuzzy,omitempty"`
 	Staged         bool              `url:"staged,omitempty"`
+	Sort           []string          `url:"sort,omitempty"`
 	Limit          float64           `url:"limit,omitempty"`
 	Offset         float64           `url:"offset,omitempty"`
 	WithTotal      bool              `url:"withTotal,omitempty"`
