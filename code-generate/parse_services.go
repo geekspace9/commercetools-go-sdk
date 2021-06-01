@@ -370,6 +370,10 @@ func parseResourceData(val yaml.MapSlice, method *ServiceMethod) {
 		for _, traitInterface := range isSection.([]interface{}) {
 			if traitName, ok := traitInterface.(string); ok {
 				method.Traits = append(method.Traits, traitName)
+			} else if tms, ok := traitInterface.(yaml.MapSlice); ok {
+				for _, m := range tms {
+					method.Traits = append(method.Traits, m.Key.(string))
+				}
 			}
 		}
 	}
