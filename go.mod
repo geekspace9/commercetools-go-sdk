@@ -6,6 +6,7 @@ require (
 	github.com/appscode/go-querystring v0.0.0-20170504095604-0126cfb3f1dc
 	github.com/dave/jennifer v1.4.0
 	github.com/davecgh/go-spew v1.1.0
+	github.com/goccy/go-json v0.7.8
 	github.com/iancoleman/strcase v0.0.0-20191112232945-16388991a334
 	github.com/mitchellh/mapstructure v1.3.2
 	github.com/opentracing-contrib/go-stdlib v1.0.0

@@ -12,6 +12,7 @@ import (
 	"os"
 	"strings"
 
+	gojson "github.com/goccy/go-json"
 	"github.com/opentracing-contrib/go-stdlib/nethttp"
 	"github.com/opentracing/opentracing-go"
 	"github.com/pkg/errors"
@@ -285,7 +286,7 @@ func processResponse(resp *http.Response, output interface{}) error {
 
 	switch resp.StatusCode {
 	case 200, 201:
-		return json.Unmarshal(body, output)
+		return gojson.Unmarshal(body, output)
 	default:
 		if resp.StatusCode == 404 && len(body) == 0 {
 			return ErrorResponse{
@@ -294,7 +295,7 @@ func processResponse(resp *http.Response, output interface{}) error {
 			}
 		}
 		customErr := ErrorResponse{}
-		err = json.Unmarshal(body, &customErr)
+		err = gojson.Unmarshal(body, &customErr)
 		if err != nil {
 			return err
 		}
@@ -326,7 +327,7 @@ func handleAuthError(err error) error {
 		if rErr, ok := uErr.Err.(*oauth2.RetrieveError); ok {
 			customErr := ErrorResponse{}
 			if len(rErr.Body) > 0 {
-				jsonErr := json.Unmarshal(rErr.Body, &customErr)
+				jsonErr := gojson.Unmarshal(rErr.Body, &customErr)
 				if jsonErr != nil {
 					return jsonErr
 				}
