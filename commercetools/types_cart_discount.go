@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // SelectionMode is an enum type
@@ -340,7 +342,7 @@ type CartDiscount struct {
 // on the discriminator value
 func (obj *CartDiscount) UnmarshalJSON(data []byte) error {
 	type Alias CartDiscount
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.References {
@@ -470,7 +472,7 @@ func (obj CartDiscountChangeTargetAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *CartDiscountChangeTargetAction) UnmarshalJSON(data []byte) error {
 	type Alias CartDiscountChangeTargetAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Target != nil {
@@ -502,7 +504,7 @@ func (obj CartDiscountChangeValueAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *CartDiscountChangeValueAction) UnmarshalJSON(data []byte) error {
 	type Alias CartDiscountChangeValueAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Value != nil {
@@ -551,7 +553,7 @@ type CartDiscountDraft struct {
 // on the discriminator value
 func (obj *CartDiscountDraft) UnmarshalJSON(data []byte) error {
 	type Alias CartDiscountDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Target != nil {
@@ -748,7 +750,7 @@ type CartDiscountUpdate struct {
 // on the discriminator value
 func (obj *CartDiscountUpdate) UnmarshalJSON(data []byte) error {
 	type Alias CartDiscountUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -780,7 +782,7 @@ func (obj CartDiscountValueAbsolute) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *CartDiscountValueAbsolute) UnmarshalJSON(data []byte) error {
 	type Alias CartDiscountValueAbsolute
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Money {
@@ -826,7 +828,7 @@ func (obj CartDiscountValueFixed) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *CartDiscountValueFixed) UnmarshalJSON(data []byte) error {
 	type Alias CartDiscountValueFixed
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Money {

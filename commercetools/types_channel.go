@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // ChannelRoleEnum is an enum type
@@ -150,7 +152,7 @@ type Channel struct {
 // on the discriminator value
 func (obj *Channel) UnmarshalJSON(data []byte) error {
 	type Alias Channel
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.GeoLocation != nil {
@@ -235,7 +237,7 @@ type ChannelDraft struct {
 // on the discriminator value
 func (obj *ChannelDraft) UnmarshalJSON(data []byte) error {
 	type Alias ChannelDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.GeoLocation != nil {
@@ -394,7 +396,7 @@ func (obj ChannelSetGeoLocationAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ChannelSetGeoLocationAction) UnmarshalJSON(data []byte) error {
 	type Alias ChannelSetGeoLocationAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.GeoLocation != nil {
@@ -432,7 +434,7 @@ type ChannelUpdate struct {
 // on the discriminator value
 func (obj *ChannelUpdate) UnmarshalJSON(data []byte) error {
 	type Alias ChannelUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

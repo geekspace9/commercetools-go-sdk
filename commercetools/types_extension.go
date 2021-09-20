@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // ExtensionAction is an enum type
@@ -168,7 +170,7 @@ type Extension struct {
 // on the discriminator value
 func (obj *Extension) UnmarshalJSON(data []byte) error {
 	type Alias Extension
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Destination != nil {
@@ -244,7 +246,7 @@ func (obj ExtensionChangeDestinationAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ExtensionChangeDestinationAction) UnmarshalJSON(data []byte) error {
 	type Alias ExtensionChangeDestinationAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Destination != nil {
@@ -284,7 +286,7 @@ type ExtensionDraft struct {
 // on the discriminator value
 func (obj *ExtensionDraft) UnmarshalJSON(data []byte) error {
 	type Alias ExtensionDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Destination != nil {
@@ -317,7 +319,7 @@ func (obj ExtensionHTTPDestination) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ExtensionHTTPDestination) UnmarshalJSON(data []byte) error {
 	type Alias ExtensionHTTPDestination
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Authentication != nil {
@@ -341,7 +343,7 @@ type ExtensionInput struct {
 // on the discriminator value
 func (obj *ExtensionInput) UnmarshalJSON(data []byte) error {
 	type Alias ExtensionInput
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Resource != nil {
@@ -408,7 +410,7 @@ type ExtensionUpdate struct {
 // on the discriminator value
 func (obj *ExtensionUpdate) UnmarshalJSON(data []byte) error {
 	type Alias ExtensionUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

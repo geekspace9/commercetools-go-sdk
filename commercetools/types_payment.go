@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // TransactionState is an enum type
@@ -232,7 +234,7 @@ type Payment struct {
 // on the discriminator value
 func (obj *Payment) UnmarshalJSON(data []byte) error {
 	type Alias Payment
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.AmountAuthorized != nil {
@@ -672,7 +674,7 @@ type PaymentUpdate struct {
 // on the discriminator value
 func (obj *PaymentUpdate) UnmarshalJSON(data []byte) error {
 	type Alias PaymentUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -700,7 +702,7 @@ type Transaction struct {
 // on the discriminator value
 func (obj *Transaction) UnmarshalJSON(data []byte) error {
 	type Alias Transaction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Amount != nil {

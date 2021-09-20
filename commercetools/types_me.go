@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // MyCartUpdateAction uses action as discriminator attribute
@@ -626,7 +628,7 @@ type MyCart struct {
 // on the discriminator value
 func (obj *MyCart) UnmarshalJSON(data []byte) error {
 	type Alias MyCart
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ShippingRateInput != nil {
@@ -1057,7 +1059,7 @@ type MyCartUpdate struct {
 // on the discriminator value
 func (obj *MyCartUpdate) UnmarshalJSON(data []byte) error {
 	type Alias MyCartUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -1452,7 +1454,7 @@ type MyCustomerUpdate struct {
 // on the discriminator value
 func (obj *MyCustomerUpdate) UnmarshalJSON(data []byte) error {
 	type Alias MyCustomerUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -1528,7 +1530,7 @@ type MyOrder struct {
 // on the discriminator value
 func (obj *MyOrder) UnmarshalJSON(data []byte) error {
 	type Alias MyOrder
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ShippingRateInput != nil {
@@ -1571,7 +1573,7 @@ type MyPayment struct {
 // on the discriminator value
 func (obj *MyPayment) UnmarshalJSON(data []byte) error {
 	type Alias MyPayment
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.AmountPlanned != nil {
@@ -1697,7 +1699,7 @@ type MyPaymentUpdate struct {
 // on the discriminator value
 func (obj *MyPaymentUpdate) UnmarshalJSON(data []byte) error {
 	type Alias MyPaymentUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -2022,7 +2024,7 @@ type MyShoppingListUpdate struct {
 // on the discriminator value
 func (obj *MyShoppingListUpdate) UnmarshalJSON(data []byte) error {
 	type Alias MyShoppingListUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // StateRoleEnum is an enum type
@@ -314,7 +316,7 @@ type StateUpdate struct {
 // on the discriminator value
 func (obj *StateUpdate) UnmarshalJSON(data []byte) error {
 	type Alias StateUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

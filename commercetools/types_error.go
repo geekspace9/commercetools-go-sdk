@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // ErrorObject uses code as discriminator attribute
@@ -704,7 +706,7 @@ func (obj DuplicateFieldError) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *DuplicateFieldError) UnmarshalJSON(data []byte) error {
 	type Alias DuplicateFieldError
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ConflictingResource != nil {
@@ -743,7 +745,7 @@ func (obj DuplicateFieldWithConflictingResourceError) MarshalJSON() ([]byte, err
 // on the discriminator value
 func (obj *DuplicateFieldWithConflictingResourceError) UnmarshalJSON(data []byte) error {
 	type Alias DuplicateFieldWithConflictingResourceError
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ConflictingResource != nil {
@@ -913,7 +915,7 @@ type ErrorResponse struct {
 // on the discriminator value
 func (obj *ErrorResponse) UnmarshalJSON(data []byte) error {
 	type Alias ErrorResponse
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Errors {

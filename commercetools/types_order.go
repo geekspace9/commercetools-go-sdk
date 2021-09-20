@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // OrderState is an enum type
@@ -1106,7 +1108,7 @@ type Order struct {
 // on the discriminator value
 func (obj *Order) UnmarshalJSON(data []byte) error {
 	type Alias Order
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ShippingRateInput != nil {
@@ -1921,7 +1923,7 @@ type OrderUpdate struct {
 // on the discriminator value
 func (obj *OrderUpdate) UnmarshalJSON(data []byte) error {
 	type Alias OrderUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -2014,7 +2016,7 @@ type ReturnInfo struct {
 // on the discriminator value
 func (obj *ReturnInfo) UnmarshalJSON(data []byte) error {
 	type Alias ReturnInfo
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Items {

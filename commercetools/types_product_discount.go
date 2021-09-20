@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // ProductDiscountUpdateAction uses action as discriminator attribute
@@ -207,7 +209,7 @@ type ProductDiscount struct {
 // on the discriminator value
 func (obj *ProductDiscount) UnmarshalJSON(data []byte) error {
 	type Alias ProductDiscount
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.References {
@@ -302,7 +304,7 @@ func (obj ProductDiscountChangeValueAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ProductDiscountChangeValueAction) UnmarshalJSON(data []byte) error {
 	type Alias ProductDiscountChangeValueAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Value != nil {
@@ -333,7 +335,7 @@ type ProductDiscountDraft struct {
 // on the discriminator value
 func (obj *ProductDiscountDraft) UnmarshalJSON(data []byte) error {
 	type Alias ProductDiscountDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Value != nil {
@@ -475,7 +477,7 @@ type ProductDiscountUpdate struct {
 // on the discriminator value
 func (obj *ProductDiscountUpdate) UnmarshalJSON(data []byte) error {
 	type Alias ProductDiscountUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -507,7 +509,7 @@ func (obj ProductDiscountValueAbsolute) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ProductDiscountValueAbsolute) UnmarshalJSON(data []byte) error {
 	type Alias ProductDiscountValueAbsolute
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Money {

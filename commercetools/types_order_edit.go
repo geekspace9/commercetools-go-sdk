@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // OrderEditResult uses type as discriminator attribute
@@ -205,7 +207,7 @@ type OrderEdit struct {
 // on the discriminator value
 func (obj *OrderEdit) UnmarshalJSON(data []byte) error {
 	type Alias OrderEdit
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Result != nil {
@@ -244,7 +246,7 @@ func (obj OrderEditAddStagedActionAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *OrderEditAddStagedActionAction) UnmarshalJSON(data []byte) error {
 	type Alias OrderEditAddStagedActionAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.StagedAction != nil {
@@ -294,7 +296,7 @@ type OrderEditDraft struct {
 // on the discriminator value
 func (obj *OrderEditDraft) UnmarshalJSON(data []byte) error {
 	type Alias OrderEditDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.StagedActions {
@@ -347,7 +349,7 @@ func (obj OrderEditPreviewFailure) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *OrderEditPreviewFailure) UnmarshalJSON(data []byte) error {
 	type Alias OrderEditPreviewFailure
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Errors {
@@ -380,7 +382,7 @@ func (obj OrderEditPreviewSuccess) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *OrderEditPreviewSuccess) UnmarshalJSON(data []byte) error {
 	type Alias OrderEditPreviewSuccess
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.MessagePayloads {
@@ -624,7 +626,7 @@ func (obj OrderEditSetStagedActionsAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *OrderEditSetStagedActionsAction) UnmarshalJSON(data []byte) error {
 	type Alias OrderEditSetStagedActionsAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.StagedActions {
@@ -649,7 +651,7 @@ type OrderEditUpdate struct {
 // on the discriminator value
 func (obj *OrderEditUpdate) UnmarshalJSON(data []byte) error {
 	type Alias OrderEditUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -674,7 +676,7 @@ type OrderExcerpt struct {
 // on the discriminator value
 func (obj *OrderExcerpt) UnmarshalJSON(data []byte) error {
 	type Alias OrderExcerpt
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.TotalPrice != nil {
@@ -1721,7 +1723,7 @@ func (obj StagedOrderSetShippingRateInputAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *StagedOrderSetShippingRateInputAction) UnmarshalJSON(data []byte) error {
 	type Alias StagedOrderSetShippingRateInputAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ShippingRateInput != nil {

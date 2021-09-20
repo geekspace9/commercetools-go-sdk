@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // Message uses type as discriminator attribute
@@ -1982,7 +1984,7 @@ type MessagePagedQueryResponse struct {
 // on the discriminator value
 func (obj *MessagePagedQueryResponse) UnmarshalJSON(data []byte) error {
 	type Alias MessagePagedQueryResponse
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Results {
@@ -2825,7 +2827,7 @@ func (obj OrderShippingRateInputSetMessage) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *OrderShippingRateInputSetMessage) UnmarshalJSON(data []byte) error {
 	type Alias OrderShippingRateInputSetMessage
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.OldShippingRateInput != nil {
@@ -2865,7 +2867,7 @@ func (obj OrderShippingRateInputSetMessagePayload) MarshalJSON() ([]byte, error)
 // on the discriminator value
 func (obj *OrderShippingRateInputSetMessagePayload) UnmarshalJSON(data []byte) error {
 	type Alias OrderShippingRateInputSetMessagePayload
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.OldShippingRateInput != nil {
@@ -4086,7 +4088,7 @@ func (obj ReviewRatingSetMessage) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ReviewRatingSetMessage) UnmarshalJSON(data []byte) error {
 	type Alias ReviewRatingSetMessage
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Target != nil {
@@ -4121,7 +4123,7 @@ func (obj ReviewRatingSetMessagePayload) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ReviewRatingSetMessagePayload) UnmarshalJSON(data []byte) error {
 	type Alias ReviewRatingSetMessagePayload
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Target != nil {
@@ -4168,7 +4170,7 @@ func (obj ReviewStateTransitionMessage) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ReviewStateTransitionMessage) UnmarshalJSON(data []byte) error {
 	type Alias ReviewStateTransitionMessage
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Target != nil {
@@ -4205,7 +4207,7 @@ func (obj ReviewStateTransitionMessagePayload) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ReviewStateTransitionMessagePayload) UnmarshalJSON(data []byte) error {
 	type Alias ReviewStateTransitionMessagePayload
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Target != nil {

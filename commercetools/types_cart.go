@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // CartOrigin is an enum type
@@ -667,7 +669,7 @@ type Cart struct {
 // on the discriminator value
 func (obj *Cart) UnmarshalJSON(data []byte) error {
 	type Alias Cart
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ShippingRateInput != nil {
@@ -942,7 +944,7 @@ type CartDraft struct {
 // on the discriminator value
 func (obj *CartDraft) UnmarshalJSON(data []byte) error {
 	type Alias CartDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ShippingRateInput != nil {
@@ -1669,7 +1671,7 @@ func (obj CartSetShippingRateInputAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *CartSetShippingRateInputAction) UnmarshalJSON(data []byte) error {
 	type Alias CartSetShippingRateInputAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ShippingRateInput != nil {
@@ -1693,7 +1695,7 @@ type CartUpdate struct {
 // on the discriminator value
 func (obj *CartUpdate) UnmarshalJSON(data []byte) error {
 	type Alias CartUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -1771,7 +1773,7 @@ type CustomLineItem struct {
 // on the discriminator value
 func (obj *CustomLineItem) UnmarshalJSON(data []byte) error {
 	type Alias CustomLineItem
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Money != nil {
@@ -1833,7 +1835,7 @@ type DiscountedLineItemPortion struct {
 // on the discriminator value
 func (obj *DiscountedLineItemPortion) UnmarshalJSON(data []byte) error {
 	type Alias DiscountedLineItemPortion
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.DiscountedAmount != nil {
@@ -1857,7 +1859,7 @@ type DiscountedLineItemPrice struct {
 // on the discriminator value
 func (obj *DiscountedLineItemPrice) UnmarshalJSON(data []byte) error {
 	type Alias DiscountedLineItemPrice
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Value != nil {
@@ -1945,7 +1947,7 @@ type LineItem struct {
 // on the discriminator value
 func (obj *LineItem) UnmarshalJSON(data []byte) error {
 	type Alias LineItem
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.TotalPrice != nil {
@@ -1985,7 +1987,7 @@ type ReplicaCartDraft struct {
 // on the discriminator value
 func (obj *ReplicaCartDraft) UnmarshalJSON(data []byte) error {
 	type Alias ReplicaCartDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Reference != nil {
@@ -2045,7 +2047,7 @@ type ShippingInfo struct {
 // on the discriminator value
 func (obj *ShippingInfo) UnmarshalJSON(data []byte) error {
 	type Alias ShippingInfo
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Price != nil {
@@ -2070,7 +2072,7 @@ type TaxPortion struct {
 // on the discriminator value
 func (obj *TaxPortion) UnmarshalJSON(data []byte) error {
 	type Alias TaxPortion
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Amount != nil {
@@ -2101,7 +2103,7 @@ type TaxedItemPrice struct {
 // on the discriminator value
 func (obj *TaxedItemPrice) UnmarshalJSON(data []byte) error {
 	type Alias TaxedItemPrice
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.TotalGross != nil {
@@ -2133,7 +2135,7 @@ type TaxedPrice struct {
 // on the discriminator value
 func (obj *TaxedPrice) UnmarshalJSON(data []byte) error {
 	type Alias TaxedPrice
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.TotalGross != nil {

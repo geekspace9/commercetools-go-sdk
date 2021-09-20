@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // ReviewUpdateAction uses action as discriminator attribute
@@ -135,7 +137,7 @@ type Review struct {
 // on the discriminator value
 func (obj *Review) UnmarshalJSON(data []byte) error {
 	type Alias Review
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Target != nil {
@@ -168,7 +170,7 @@ type ReviewDraft struct {
 // on the discriminator value
 func (obj *ReviewDraft) UnmarshalJSON(data []byte) error {
 	type Alias ReviewDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Target != nil {
@@ -348,7 +350,7 @@ func (obj ReviewSetTargetAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ReviewSetTargetAction) UnmarshalJSON(data []byte) error {
 	type Alias ReviewSetTargetAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Target != nil {
@@ -415,7 +417,7 @@ type ReviewUpdate struct {
 // on the discriminator value
 func (obj *ReviewUpdate) UnmarshalJSON(data []byte) error {
 	type Alias ReviewUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

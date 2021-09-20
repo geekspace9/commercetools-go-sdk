@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // SubscriptionHealthStatus is an enum type
@@ -442,7 +444,7 @@ type Subscription struct {
 // on the discriminator value
 func (obj *Subscription) UnmarshalJSON(data []byte) error {
 	type Alias Subscription
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Destination != nil {
@@ -481,7 +483,7 @@ func (obj SubscriptionChangeDestinationAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *SubscriptionChangeDestinationAction) UnmarshalJSON(data []byte) error {
 	type Alias SubscriptionChangeDestinationAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Destination != nil {
@@ -508,7 +510,7 @@ type SubscriptionDraft struct {
 // on the discriminator value
 func (obj *SubscriptionDraft) UnmarshalJSON(data []byte) error {
 	type Alias SubscriptionDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Destination != nil {
@@ -590,7 +592,7 @@ type SubscriptionUpdate struct {
 // on the discriminator value
 func (obj *SubscriptionUpdate) UnmarshalJSON(data []byte) error {
 	type Alias SubscriptionUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

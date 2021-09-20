@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // MoneyType is an enum type
@@ -758,7 +760,7 @@ type Price struct {
 // on the discriminator value
 func (obj *Price) UnmarshalJSON(data []byte) error {
 	type Alias Price
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Value != nil {
@@ -795,7 +797,7 @@ type PriceTier struct {
 // on the discriminator value
 func (obj *PriceTier) UnmarshalJSON(data []byte) error {
 	type Alias PriceTier
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Value != nil {
@@ -847,7 +849,7 @@ type ScopedPrice struct {
 // on the discriminator value
 func (obj *ScopedPrice) UnmarshalJSON(data []byte) error {
 	type Alias ScopedPrice
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.CurrentValue != nil {

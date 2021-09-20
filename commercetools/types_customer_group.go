@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // CustomerGroupUpdateAction uses action as discriminator attribute
@@ -181,7 +183,7 @@ type CustomerGroupUpdate struct {
 // on the discriminator value
 func (obj *CustomerGroupUpdate) UnmarshalJSON(data []byte) error {
 	type Alias CustomerGroupUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

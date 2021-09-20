@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	gojson "github.com/goccy/go-json"
 )
 
 // SearchIndexingConfigurationStatus is an enum type
@@ -229,7 +231,7 @@ type Project struct {
 // on the discriminator value
 func (obj *Project) UnmarshalJSON(data []byte) error {
 	type Alias Project
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ShippingRateInputType != nil {
@@ -401,7 +403,7 @@ func (obj ProjectSetShippingRateInputTypeAction) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *ProjectSetShippingRateInputTypeAction) UnmarshalJSON(data []byte) error {
 	type Alias ProjectSetShippingRateInputTypeAction
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ShippingRateInputType != nil {
@@ -425,7 +427,7 @@ type ProjectUpdate struct {
 // on the discriminator value
 func (obj *ProjectUpdate) UnmarshalJSON(data []byte) error {
 	type Alias ProjectUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := gojson.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
