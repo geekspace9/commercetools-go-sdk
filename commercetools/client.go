@@ -282,6 +282,9 @@ func (c *Client) getResponse(ctx context.Context, method string, url string, par
 
 func processResponse(resp *http.Response, output interface{}) error {
 	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
 	defer resp.Body.Close()
 
 	switch resp.StatusCode {
