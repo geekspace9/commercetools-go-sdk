@@ -299,7 +299,9 @@ func processResponse(resp *http.Response, output interface{}) error {
 		customErr := ErrorResponse{}
 		err = json.Unmarshal(body, &customErr)
 		if err != nil {
-			return err
+			customErr.StatusCode = resp.StatusCode
+			customErr.Message = err.Error()
+			return customErr
 		}
 		return customErr
 	}

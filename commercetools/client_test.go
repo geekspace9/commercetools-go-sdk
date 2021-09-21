@@ -27,6 +27,7 @@ func TestClientGetBadRequestJson(t *testing.T) {
 
 	_, err := client.ProductGetWithID(context.TODO(), "fake-id")
 	assert.Equal(t, "invalid character ',' looking for beginning of value", err.Error())
+	assert.IsType(t, commercetools.ErrorResponse{}, err)
 }
 
 func TestClientNotFound(t *testing.T) {
