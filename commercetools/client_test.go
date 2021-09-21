@@ -26,6 +26,7 @@ func TestClientGetBadRequestJson(t *testing.T) {
 	defer server.Close()
 
 	_, err := client.ProductGetWithID(context.TODO(), "fake-id")
+	assert.IsType(t, commercetools.ErrorResponse{}, err)
 	assert.Equal(t, "json: null unexpected end of JSON input", err.Error())
 }
 
