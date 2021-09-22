@@ -265,7 +265,10 @@ func (c *Client) getResponse(ctx context.Context, method string, url string, par
 
 	if c.tracer != nil {
 		var ht *nethttp.Tracer
-		req, ht = nethttp.TraceRequest(c.tracer, req)
+		req, ht = nethttp.TraceRequest(c.tracer, req,
+			nethttp.ComponentName("CT client"),
+			nethttp.OperationName("HTTP "+method+" "+url),
+		)
 		defer ht.Finish()
 	}
 	resp, err := c.httpClient.Do(req)
