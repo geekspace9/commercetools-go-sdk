@@ -238,7 +238,7 @@ func (c *Client) doRequest(ctx context.Context, method string, endpoint string, 
 	if err != nil {
 		return err
 	}
-	return processResponse(resp, output)
+	return c.processResponse(ctx, resp, output)
 }
 
 func (c *Client) getResponse(ctx context.Context, method string, url string, params url.Values, data io.Reader, headers map[string]string) (*http.Response, error) {
@@ -279,12 +279,18 @@ func (c *Client) getResponse(ctx context.Context, method string, url string, par
 	return resp, nil
 }
 
-func processResponse(resp *http.Response, output interface{}) error {
+func (c *Client) processResponse(ctx context.Context, resp *http.Response, output interface{}) error {
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
+
+	if c.tracer != nil {
+		if span := opentracing.SpanFromContext(ctx); span != nil {
+			span.SetTag("http.response.size", len(body))
+		}
+	}
 
 	switch resp.StatusCode {
 	case 200, 201:
