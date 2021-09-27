@@ -3,9 +3,11 @@
 package commercetools
 
 import (
-	"encoding/json"
+	json1 "encoding/json"
 	"errors"
 	"time"
+
+	json "github.com/segmentio/encoding/json"
 )
 
 // DiscountCodeUpdateAction uses action as discriminator attribute
@@ -166,7 +168,7 @@ type DiscountCodeChangeCartDiscountsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeChangeCartDiscountsAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeChangeCartDiscountsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeCartDiscounts", Alias: (*Alias)(&obj)})
@@ -180,7 +182,7 @@ type DiscountCodeChangeGroupsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeChangeGroupsAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeChangeGroupsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeGroups", Alias: (*Alias)(&obj)})
@@ -194,7 +196,7 @@ type DiscountCodeChangeIsActiveAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeChangeIsActiveAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeChangeIsActiveAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeIsActive", Alias: (*Alias)(&obj)})
@@ -234,7 +236,7 @@ type DiscountCodeReference struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeReference) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeReference
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		TypeID string `json:"typeId"`
 		*Alias
 	}{TypeID: "discount-code", Alias: (*Alias)(&obj)})
@@ -249,7 +251,7 @@ type DiscountCodeResourceIdentifier struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeResourceIdentifier) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeResourceIdentifier
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		TypeID string `json:"typeId"`
 		*Alias
 	}{TypeID: "discount-code", Alias: (*Alias)(&obj)})
@@ -263,7 +265,7 @@ type DiscountCodeSetCartPredicateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetCartPredicateAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetCartPredicateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCartPredicate", Alias: (*Alias)(&obj)})
@@ -278,7 +280,7 @@ type DiscountCodeSetCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomField", Alias: (*Alias)(&obj)})
@@ -293,7 +295,7 @@ type DiscountCodeSetCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomType", Alias: (*Alias)(&obj)})
@@ -307,7 +309,7 @@ type DiscountCodeSetDescriptionAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetDescriptionAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetDescriptionAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setDescription", Alias: (*Alias)(&obj)})
@@ -321,7 +323,7 @@ type DiscountCodeSetMaxApplicationsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetMaxApplicationsAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetMaxApplicationsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setMaxApplications", Alias: (*Alias)(&obj)})
@@ -335,7 +337,7 @@ type DiscountCodeSetMaxApplicationsPerCustomerAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetMaxApplicationsPerCustomerAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetMaxApplicationsPerCustomerAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setMaxApplicationsPerCustomer", Alias: (*Alias)(&obj)})
@@ -349,7 +351,7 @@ type DiscountCodeSetNameAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetNameAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetNameAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setName", Alias: (*Alias)(&obj)})
@@ -363,7 +365,7 @@ type DiscountCodeSetValidFromAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetValidFromAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetValidFromAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setValidFrom", Alias: (*Alias)(&obj)})
@@ -378,7 +380,7 @@ type DiscountCodeSetValidFromAndUntilAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetValidFromAndUntilAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetValidFromAndUntilAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setValidFromAndUntil", Alias: (*Alias)(&obj)})
@@ -392,7 +394,7 @@ type DiscountCodeSetValidUntilAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj DiscountCodeSetValidUntilAction) MarshalJSON() ([]byte, error) {
 	type Alias DiscountCodeSetValidUntilAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setValidUntil", Alias: (*Alias)(&obj)})

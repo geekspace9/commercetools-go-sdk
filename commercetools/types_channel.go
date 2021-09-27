@@ -3,9 +3,11 @@
 package commercetools
 
 import (
-	"encoding/json"
+	json1 "encoding/json"
 	"errors"
 	"time"
+
+	json "github.com/segmentio/encoding/json"
 )
 
 // ChannelRoleEnum is an enum type
@@ -172,7 +174,7 @@ type ChannelAddRolesAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelAddRolesAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelAddRolesAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addRoles", Alias: (*Alias)(&obj)})
@@ -186,7 +188,7 @@ type ChannelChangeDescriptionAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelChangeDescriptionAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelChangeDescriptionAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeDescription", Alias: (*Alias)(&obj)})
@@ -200,7 +202,7 @@ type ChannelChangeKeyAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelChangeKeyAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelChangeKeyAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeKey", Alias: (*Alias)(&obj)})
@@ -214,7 +216,7 @@ type ChannelChangeNameAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelChangeNameAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelChangeNameAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeName", Alias: (*Alias)(&obj)})
@@ -267,7 +269,7 @@ type ChannelReference struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelReference) MarshalJSON() ([]byte, error) {
 	type Alias ChannelReference
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		TypeID string `json:"typeId"`
 		*Alias
 	}{TypeID: "channel", Alias: (*Alias)(&obj)})
@@ -281,7 +283,7 @@ type ChannelRemoveRolesAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelRemoveRolesAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelRemoveRolesAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "removeRoles", Alias: (*Alias)(&obj)})
@@ -296,7 +298,7 @@ type ChannelResourceIdentifier struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelResourceIdentifier) MarshalJSON() ([]byte, error) {
 	type Alias ChannelResourceIdentifier
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		TypeID string `json:"typeId"`
 		*Alias
 	}{TypeID: "channel", Alias: (*Alias)(&obj)})
@@ -310,7 +312,7 @@ type ChannelSetAddressAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelSetAddressAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelSetAddressAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setAddress", Alias: (*Alias)(&obj)})
@@ -325,7 +327,7 @@ type ChannelSetAddressCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelSetAddressCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelSetAddressCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setAddressCustomField", Alias: (*Alias)(&obj)})
@@ -340,7 +342,7 @@ type ChannelSetAddressCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelSetAddressCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelSetAddressCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setAddressCustomType", Alias: (*Alias)(&obj)})
@@ -355,7 +357,7 @@ type ChannelSetCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelSetCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelSetCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomField", Alias: (*Alias)(&obj)})
@@ -370,7 +372,7 @@ type ChannelSetCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelSetCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelSetCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomType", Alias: (*Alias)(&obj)})
@@ -384,7 +386,7 @@ type ChannelSetGeoLocationAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelSetGeoLocationAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelSetGeoLocationAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setGeoLocation", Alias: (*Alias)(&obj)})
@@ -416,7 +418,7 @@ type ChannelSetRolesAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ChannelSetRolesAction) MarshalJSON() ([]byte, error) {
 	type Alias ChannelSetRolesAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setRoles", Alias: (*Alias)(&obj)})

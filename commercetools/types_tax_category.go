@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	json1 "github.com/segmentio/encoding/json"
 )
 
 // TaxCategoryUpdateAction uses action as discriminator attribute
@@ -230,7 +232,7 @@ type TaxCategoryUpdate struct {
 // on the discriminator value
 func (obj *TaxCategoryUpdate) UnmarshalJSON(data []byte) error {
 	type Alias TaxCategoryUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

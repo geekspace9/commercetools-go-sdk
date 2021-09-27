@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	json1 "github.com/segmentio/encoding/json"
 )
 
 // AttributeConstraintEnum is an enum type
@@ -368,7 +370,7 @@ type AttributeDefinition struct {
 // on the discriminator value
 func (obj *AttributeDefinition) UnmarshalJSON(data []byte) error {
 	type Alias AttributeDefinition
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Type != nil {
@@ -398,7 +400,7 @@ type AttributeDefinitionDraft struct {
 // on the discriminator value
 func (obj *AttributeDefinitionDraft) UnmarshalJSON(data []byte) error {
 	type Alias AttributeDefinitionDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Type != nil {
@@ -534,7 +536,7 @@ func (obj AttributeSetType) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *AttributeSetType) UnmarshalJSON(data []byte) error {
 	type Alias AttributeSetType
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ElementType != nil {
@@ -952,7 +954,7 @@ type ProductTypeUpdate struct {
 // on the discriminator value
 func (obj *ProductTypeUpdate) UnmarshalJSON(data []byte) error {
 	type Alias ProductTypeUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

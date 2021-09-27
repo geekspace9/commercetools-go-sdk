@@ -3,7 +3,6 @@ package commercetools
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -15,6 +14,7 @@ import (
 	"github.com/opentracing-contrib/go-stdlib/nethttp"
 	"github.com/opentracing/opentracing-go"
 	"github.com/pkg/errors"
+	"github.com/segmentio/encoding/json"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )

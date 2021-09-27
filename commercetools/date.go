@@ -1,10 +1,11 @@
 package commercetools
 
 import (
-	"encoding/json"
 	"fmt"
 	"strconv"
 	"time"
+
+	"github.com/segmentio/encoding/json"
 )
 
 // Date holds date information for Commercetools API format

@@ -3,9 +3,11 @@
 package commercetools
 
 import (
-	"encoding/json"
+	json1 "encoding/json"
 	"errors"
 	"time"
+
+	json "github.com/segmentio/encoding/json"
 )
 
 // ReviewUpdateAction uses action as discriminator attribute
@@ -209,7 +211,7 @@ type ReviewReference struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewReference) MarshalJSON() ([]byte, error) {
 	type Alias ReviewReference
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		TypeID string `json:"typeId"`
 		*Alias
 	}{TypeID: "review", Alias: (*Alias)(&obj)})
@@ -224,7 +226,7 @@ type ReviewResourceIdentifier struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewResourceIdentifier) MarshalJSON() ([]byte, error) {
 	type Alias ReviewResourceIdentifier
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		TypeID string `json:"typeId"`
 		*Alias
 	}{TypeID: "review", Alias: (*Alias)(&obj)})
@@ -238,7 +240,7 @@ type ReviewSetAuthorNameAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetAuthorNameAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetAuthorNameAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setAuthorName", Alias: (*Alias)(&obj)})
@@ -253,7 +255,7 @@ type ReviewSetCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomField", Alias: (*Alias)(&obj)})
@@ -268,7 +270,7 @@ type ReviewSetCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomType", Alias: (*Alias)(&obj)})
@@ -282,7 +284,7 @@ type ReviewSetCustomerAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetCustomerAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetCustomerAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomer", Alias: (*Alias)(&obj)})
@@ -296,7 +298,7 @@ type ReviewSetKeyAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetKeyAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetKeyAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setKey", Alias: (*Alias)(&obj)})
@@ -310,7 +312,7 @@ type ReviewSetLocaleAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetLocaleAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetLocaleAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLocale", Alias: (*Alias)(&obj)})
@@ -324,7 +326,7 @@ type ReviewSetRatingAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetRatingAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetRatingAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setRating", Alias: (*Alias)(&obj)})
@@ -338,7 +340,7 @@ type ReviewSetTargetAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetTargetAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetTargetAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setTarget", Alias: (*Alias)(&obj)})
@@ -370,7 +372,7 @@ type ReviewSetTextAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetTextAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetTextAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setText", Alias: (*Alias)(&obj)})
@@ -384,7 +386,7 @@ type ReviewSetTitleAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewSetTitleAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewSetTitleAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setTitle", Alias: (*Alias)(&obj)})
@@ -399,7 +401,7 @@ type ReviewTransitionStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ReviewTransitionStateAction) MarshalJSON() ([]byte, error) {
 	type Alias ReviewTransitionStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "transitionState", Alias: (*Alias)(&obj)})

@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	json1 "github.com/segmentio/encoding/json"
 )
 
 // FacetTypes is an enum type
@@ -500,7 +502,7 @@ type FacetResults struct {
 // on the discriminator value
 func (obj *FacetResults) UnmarshalJSON(data []byte) error {
 	type Alias FacetResults
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	return nil
@@ -1427,7 +1429,7 @@ type ProductUpdate struct {
 // on the discriminator value
 func (obj *ProductUpdate) UnmarshalJSON(data []byte) error {
 	type Alias ProductUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -1506,7 +1508,7 @@ type SearchKeyword struct {
 // on the discriminator value
 func (obj *SearchKeyword) UnmarshalJSON(data []byte) error {
 	type Alias SearchKeyword
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.SuggestTokenizer != nil {

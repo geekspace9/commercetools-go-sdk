@@ -271,7 +271,7 @@ func generateStructUnmarshalJSON(object *RamlType, discriminatedAttributes []*Ra
 	c = c.Block(
 		jen.Type().Id("Alias").Id(object.CodeName),
 		jen.If(
-			jen.Err().Op(":=").Qual("encoding/json", "Unmarshal").Call(
+			jen.Err().Op(":=").Qual("github.com/segmentio/encoding/json", "Unmarshal").Call(
 				jen.Id("data"),
 				jen.Parens(jen.Op("*").Id("Alias")).Parens(jen.Id("obj")),
 			),

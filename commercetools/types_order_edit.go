@@ -3,9 +3,11 @@
 package commercetools
 
 import (
-	"encoding/json"
+	json1 "encoding/json"
 	"errors"
 	"time"
+
+	json "github.com/segmentio/encoding/json"
 )
 
 // OrderEditResult uses type as discriminator attribute
@@ -234,7 +236,7 @@ type OrderEditAddStagedActionAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditAddStagedActionAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditAddStagedActionAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addStagedAction", Alias: (*Alias)(&obj)})
@@ -268,7 +270,7 @@ type OrderEditApplied struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditApplied) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditApplied
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Type string `json:"type"`
 		*Alias
 	}{Type: "Applied", Alias: (*Alias)(&obj)})
@@ -314,7 +316,7 @@ type OrderEditNotProcessed struct{}
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditNotProcessed) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditNotProcessed
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Type string `json:"type"`
 		*Alias
 	}{Type: "NotProcessed", Alias: (*Alias)(&obj)})
@@ -337,7 +339,7 @@ type OrderEditPreviewFailure struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditPreviewFailure) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditPreviewFailure
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Type string `json:"type"`
 		*Alias
 	}{Type: "PreviewFailure", Alias: (*Alias)(&obj)})
@@ -370,7 +372,7 @@ type OrderEditPreviewSuccess struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditPreviewSuccess) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditPreviewSuccess
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Type string `json:"type"`
 		*Alias
 	}{Type: "PreviewSuccess", Alias: (*Alias)(&obj)})
@@ -403,7 +405,7 @@ type OrderEditReference struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditReference) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditReference
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		TypeID string `json:"typeId"`
 		*Alias
 	}{TypeID: "order-edit", Alias: (*Alias)(&obj)})
@@ -418,7 +420,7 @@ type OrderEditResourceIdentifier struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditResourceIdentifier) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditResourceIdentifier
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		TypeID string `json:"typeId"`
 		*Alias
 	}{TypeID: "order-edit", Alias: (*Alias)(&obj)})
@@ -433,7 +435,7 @@ type OrderEditSetBillingAddressCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetBillingAddressCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetBillingAddressCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setBillingAddressCustomField", Alias: (*Alias)(&obj)})
@@ -448,7 +450,7 @@ type OrderEditSetBillingAddressCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetBillingAddressCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetBillingAddressCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setBillingAddressCustomType", Alias: (*Alias)(&obj)})
@@ -462,7 +464,7 @@ type OrderEditSetCommentAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetCommentAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetCommentAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setComment", Alias: (*Alias)(&obj)})
@@ -477,7 +479,7 @@ type OrderEditSetCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomField", Alias: (*Alias)(&obj)})
@@ -492,7 +494,7 @@ type OrderEditSetCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomType", Alias: (*Alias)(&obj)})
@@ -508,7 +510,7 @@ type OrderEditSetDeliveryAddressCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetDeliveryAddressCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetDeliveryAddressCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setDeliveryAddressCustomField", Alias: (*Alias)(&obj)})
@@ -524,7 +526,7 @@ type OrderEditSetDeliveryAddressCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetDeliveryAddressCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetDeliveryAddressCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setDeliveryAddressCustomType", Alias: (*Alias)(&obj)})
@@ -540,7 +542,7 @@ type OrderEditSetItemShippingAddressCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetItemShippingAddressCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetItemShippingAddressCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setItemShippingAddressCustomField", Alias: (*Alias)(&obj)})
@@ -556,7 +558,7 @@ type OrderEditSetItemShippingAddressCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetItemShippingAddressCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetItemShippingAddressCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setItemShippingAddressCustomType", Alias: (*Alias)(&obj)})
@@ -570,7 +572,7 @@ type OrderEditSetKeyAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetKeyAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetKeyAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setKey", Alias: (*Alias)(&obj)})
@@ -585,7 +587,7 @@ type OrderEditSetShippingAddressCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetShippingAddressCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetShippingAddressCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setShippingAddressCustomField", Alias: (*Alias)(&obj)})
@@ -600,7 +602,7 @@ type OrderEditSetShippingAddressCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetShippingAddressCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetShippingAddressCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setShippingAddressCustomType", Alias: (*Alias)(&obj)})
@@ -614,7 +616,7 @@ type OrderEditSetStagedActionsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj OrderEditSetStagedActionsAction) MarshalJSON() ([]byte, error) {
 	type Alias OrderEditSetStagedActionsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setStagedActions", Alias: (*Alias)(&obj)})
@@ -747,7 +749,7 @@ type StagedOrderAddCustomLineItemAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderAddCustomLineItemAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderAddCustomLineItemAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addCustomLineItem", Alias: (*Alias)(&obj)})
@@ -763,7 +765,7 @@ type StagedOrderAddDeliveryAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderAddDeliveryAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderAddDeliveryAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addDelivery", Alias: (*Alias)(&obj)})
@@ -777,7 +779,7 @@ type StagedOrderAddDiscountCodeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderAddDiscountCodeAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderAddDiscountCodeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addDiscountCode", Alias: (*Alias)(&obj)})
@@ -791,7 +793,7 @@ type StagedOrderAddItemShippingAddressAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderAddItemShippingAddressAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderAddItemShippingAddressAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addItemShippingAddress", Alias: (*Alias)(&obj)})
@@ -816,7 +818,7 @@ type StagedOrderAddLineItemAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderAddLineItemAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderAddLineItemAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addLineItem", Alias: (*Alias)(&obj)})
@@ -833,7 +835,7 @@ type StagedOrderAddParcelToDeliveryAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderAddParcelToDeliveryAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderAddParcelToDeliveryAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addParcelToDelivery", Alias: (*Alias)(&obj)})
@@ -847,7 +849,7 @@ type StagedOrderAddPaymentAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderAddPaymentAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderAddPaymentAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addPayment", Alias: (*Alias)(&obj)})
@@ -863,7 +865,7 @@ type StagedOrderAddReturnInfoAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderAddReturnInfoAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderAddReturnInfoAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addReturnInfo", Alias: (*Alias)(&obj)})
@@ -879,7 +881,7 @@ type StagedOrderAddShoppingListAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderAddShoppingListAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderAddShoppingListAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "addShoppingList", Alias: (*Alias)(&obj)})
@@ -894,7 +896,7 @@ type StagedOrderChangeCustomLineItemMoneyAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderChangeCustomLineItemMoneyAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderChangeCustomLineItemMoneyAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeCustomLineItemMoney", Alias: (*Alias)(&obj)})
@@ -909,7 +911,7 @@ type StagedOrderChangeCustomLineItemQuantityAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderChangeCustomLineItemQuantityAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderChangeCustomLineItemQuantityAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeCustomLineItemQuantity", Alias: (*Alias)(&obj)})
@@ -926,7 +928,7 @@ type StagedOrderChangeLineItemQuantityAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderChangeLineItemQuantityAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderChangeLineItemQuantityAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeLineItemQuantity", Alias: (*Alias)(&obj)})
@@ -940,7 +942,7 @@ type StagedOrderChangeOrderStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderChangeOrderStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderChangeOrderStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeOrderState", Alias: (*Alias)(&obj)})
@@ -954,7 +956,7 @@ type StagedOrderChangePaymentStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderChangePaymentStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderChangePaymentStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changePaymentState", Alias: (*Alias)(&obj)})
@@ -968,7 +970,7 @@ type StagedOrderChangeShipmentStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderChangeShipmentStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderChangeShipmentStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeShipmentState", Alias: (*Alias)(&obj)})
@@ -982,7 +984,7 @@ type StagedOrderChangeTaxCalculationModeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderChangeTaxCalculationModeAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderChangeTaxCalculationModeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeTaxCalculationMode", Alias: (*Alias)(&obj)})
@@ -996,7 +998,7 @@ type StagedOrderChangeTaxModeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderChangeTaxModeAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderChangeTaxModeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeTaxMode", Alias: (*Alias)(&obj)})
@@ -1010,7 +1012,7 @@ type StagedOrderChangeTaxRoundingModeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderChangeTaxRoundingModeAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderChangeTaxRoundingModeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeTaxRoundingMode", Alias: (*Alias)(&obj)})
@@ -1025,7 +1027,7 @@ type StagedOrderImportCustomLineItemStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderImportCustomLineItemStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderImportCustomLineItemStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "importCustomLineItemState", Alias: (*Alias)(&obj)})
@@ -1040,7 +1042,7 @@ type StagedOrderImportLineItemStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderImportLineItemStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderImportLineItemStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "importLineItemState", Alias: (*Alias)(&obj)})
@@ -1054,7 +1056,7 @@ type StagedOrderRemoveCustomLineItemAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderRemoveCustomLineItemAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderRemoveCustomLineItemAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "removeCustomLineItem", Alias: (*Alias)(&obj)})
@@ -1068,7 +1070,7 @@ type StagedOrderRemoveDeliveryAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderRemoveDeliveryAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderRemoveDeliveryAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "removeDelivery", Alias: (*Alias)(&obj)})
@@ -1082,7 +1084,7 @@ type StagedOrderRemoveDiscountCodeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderRemoveDiscountCodeAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderRemoveDiscountCodeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "removeDiscountCode", Alias: (*Alias)(&obj)})
@@ -1096,7 +1098,7 @@ type StagedOrderRemoveItemShippingAddressAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderRemoveItemShippingAddressAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderRemoveItemShippingAddressAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "removeItemShippingAddress", Alias: (*Alias)(&obj)})
@@ -1114,7 +1116,7 @@ type StagedOrderRemoveLineItemAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderRemoveLineItemAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderRemoveLineItemAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "removeLineItem", Alias: (*Alias)(&obj)})
@@ -1128,7 +1130,7 @@ type StagedOrderRemoveParcelFromDeliveryAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderRemoveParcelFromDeliveryAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderRemoveParcelFromDeliveryAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "removeParcelFromDelivery", Alias: (*Alias)(&obj)})
@@ -1142,7 +1144,7 @@ type StagedOrderRemovePaymentAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderRemovePaymentAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderRemovePaymentAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "removePayment", Alias: (*Alias)(&obj)})
@@ -1156,7 +1158,7 @@ type StagedOrderSetBillingAddressAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetBillingAddressAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetBillingAddressAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setBillingAddress", Alias: (*Alias)(&obj)})
@@ -1170,7 +1172,7 @@ type StagedOrderSetCountryAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCountryAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCountryAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCountry", Alias: (*Alias)(&obj)})
@@ -1185,7 +1187,7 @@ type StagedOrderSetCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomField", Alias: (*Alias)(&obj)})
@@ -1201,7 +1203,7 @@ type StagedOrderSetCustomLineItemCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomLineItemCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomLineItemCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomLineItemCustomField", Alias: (*Alias)(&obj)})
@@ -1217,7 +1219,7 @@ type StagedOrderSetCustomLineItemCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomLineItemCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomLineItemCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomLineItemCustomType", Alias: (*Alias)(&obj)})
@@ -1232,7 +1234,7 @@ type StagedOrderSetCustomLineItemShippingDetailsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomLineItemShippingDetailsAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomLineItemShippingDetailsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomLineItemShippingDetails", Alias: (*Alias)(&obj)})
@@ -1247,7 +1249,7 @@ type StagedOrderSetCustomLineItemTaxAmountAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomLineItemTaxAmountAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomLineItemTaxAmountAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomLineItemTaxAmount", Alias: (*Alias)(&obj)})
@@ -1262,7 +1264,7 @@ type StagedOrderSetCustomLineItemTaxRateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomLineItemTaxRateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomLineItemTaxRateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomLineItemTaxRate", Alias: (*Alias)(&obj)})
@@ -1279,7 +1281,7 @@ type StagedOrderSetCustomShippingMethodAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomShippingMethodAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomShippingMethodAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomShippingMethod", Alias: (*Alias)(&obj)})
@@ -1294,7 +1296,7 @@ type StagedOrderSetCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomType", Alias: (*Alias)(&obj)})
@@ -1308,7 +1310,7 @@ type StagedOrderSetCustomerEmailAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomerEmailAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomerEmailAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomerEmail", Alias: (*Alias)(&obj)})
@@ -1322,7 +1324,7 @@ type StagedOrderSetCustomerGroupAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomerGroupAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomerGroupAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomerGroup", Alias: (*Alias)(&obj)})
@@ -1336,7 +1338,7 @@ type StagedOrderSetCustomerIDAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetCustomerIDAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetCustomerIDAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setCustomerId", Alias: (*Alias)(&obj)})
@@ -1351,7 +1353,7 @@ type StagedOrderSetDeliveryAddressAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetDeliveryAddressAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetDeliveryAddressAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setDeliveryAddress", Alias: (*Alias)(&obj)})
@@ -1366,7 +1368,7 @@ type StagedOrderSetDeliveryItemsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetDeliveryItemsAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetDeliveryItemsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setDeliveryItems", Alias: (*Alias)(&obj)})
@@ -1382,7 +1384,7 @@ type StagedOrderSetLineItemCustomFieldAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetLineItemCustomFieldAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetLineItemCustomFieldAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLineItemCustomField", Alias: (*Alias)(&obj)})
@@ -1398,7 +1400,7 @@ type StagedOrderSetLineItemCustomTypeAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetLineItemCustomTypeAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetLineItemCustomTypeAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLineItemCustomType", Alias: (*Alias)(&obj)})
@@ -1413,7 +1415,7 @@ type StagedOrderSetLineItemDistributionChannelAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetLineItemDistributionChannelAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetLineItemDistributionChannelAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLineItemDistributionChannel", Alias: (*Alias)(&obj)})
@@ -1428,7 +1430,7 @@ type StagedOrderSetLineItemPriceAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetLineItemPriceAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetLineItemPriceAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLineItemPrice", Alias: (*Alias)(&obj)})
@@ -1443,7 +1445,7 @@ type StagedOrderSetLineItemShippingDetailsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetLineItemShippingDetailsAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetLineItemShippingDetailsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLineItemShippingDetails", Alias: (*Alias)(&obj)})
@@ -1458,7 +1460,7 @@ type StagedOrderSetLineItemTaxAmountAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetLineItemTaxAmountAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetLineItemTaxAmountAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLineItemTaxAmount", Alias: (*Alias)(&obj)})
@@ -1473,7 +1475,7 @@ type StagedOrderSetLineItemTaxRateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetLineItemTaxRateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetLineItemTaxRateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLineItemTaxRate", Alias: (*Alias)(&obj)})
@@ -1488,7 +1490,7 @@ type StagedOrderSetLineItemTotalPriceAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetLineItemTotalPriceAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetLineItemTotalPriceAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLineItemTotalPrice", Alias: (*Alias)(&obj)})
@@ -1502,7 +1504,7 @@ type StagedOrderSetLocaleAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetLocaleAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetLocaleAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setLocale", Alias: (*Alias)(&obj)})
@@ -1516,7 +1518,7 @@ type StagedOrderSetOrderNumberAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetOrderNumberAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetOrderNumberAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setOrderNumber", Alias: (*Alias)(&obj)})
@@ -1531,7 +1533,7 @@ type StagedOrderSetOrderTotalTaxAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetOrderTotalTaxAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetOrderTotalTaxAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setOrderTotalTax", Alias: (*Alias)(&obj)})
@@ -1546,7 +1548,7 @@ type StagedOrderSetParcelItemsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetParcelItemsAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetParcelItemsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setParcelItems", Alias: (*Alias)(&obj)})
@@ -1561,7 +1563,7 @@ type StagedOrderSetParcelMeasurementsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetParcelMeasurementsAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetParcelMeasurementsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setParcelMeasurements", Alias: (*Alias)(&obj)})
@@ -1576,7 +1578,7 @@ type StagedOrderSetParcelTrackingDataAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetParcelTrackingDataAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetParcelTrackingDataAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setParcelTrackingData", Alias: (*Alias)(&obj)})
@@ -1591,7 +1593,7 @@ type StagedOrderSetReturnPaymentStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetReturnPaymentStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetReturnPaymentStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setReturnPaymentState", Alias: (*Alias)(&obj)})
@@ -1606,7 +1608,7 @@ type StagedOrderSetReturnShipmentStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetReturnShipmentStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetReturnShipmentStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setReturnShipmentState", Alias: (*Alias)(&obj)})
@@ -1620,7 +1622,7 @@ type StagedOrderSetShippingAddressAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetShippingAddressAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetShippingAddressAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setShippingAddress", Alias: (*Alias)(&obj)})
@@ -1638,7 +1640,7 @@ type StagedOrderSetShippingAddressAndCustomShippingMethodAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetShippingAddressAndCustomShippingMethodAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetShippingAddressAndCustomShippingMethodAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setShippingAddressAndCustomShippingMethod", Alias: (*Alias)(&obj)})
@@ -1654,7 +1656,7 @@ type StagedOrderSetShippingAddressAndShippingMethodAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetShippingAddressAndShippingMethodAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetShippingAddressAndShippingMethodAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setShippingAddressAndShippingMethod", Alias: (*Alias)(&obj)})
@@ -1669,7 +1671,7 @@ type StagedOrderSetShippingMethodAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetShippingMethodAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetShippingMethodAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setShippingMethod", Alias: (*Alias)(&obj)})
@@ -1683,7 +1685,7 @@ type StagedOrderSetShippingMethodTaxAmountAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetShippingMethodTaxAmountAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetShippingMethodTaxAmountAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setShippingMethodTaxAmount", Alias: (*Alias)(&obj)})
@@ -1697,7 +1699,7 @@ type StagedOrderSetShippingMethodTaxRateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetShippingMethodTaxRateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetShippingMethodTaxRateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setShippingMethodTaxRate", Alias: (*Alias)(&obj)})
@@ -1711,7 +1713,7 @@ type StagedOrderSetShippingRateInputAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderSetShippingRateInputAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderSetShippingRateInputAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setShippingRateInput", Alias: (*Alias)(&obj)})
@@ -1747,7 +1749,7 @@ type StagedOrderTransitionCustomLineItemStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderTransitionCustomLineItemStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderTransitionCustomLineItemStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "transitionCustomLineItemState", Alias: (*Alias)(&obj)})
@@ -1765,7 +1767,7 @@ type StagedOrderTransitionLineItemStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderTransitionLineItemStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderTransitionLineItemStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "transitionLineItemState", Alias: (*Alias)(&obj)})
@@ -1780,7 +1782,7 @@ type StagedOrderTransitionStateAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderTransitionStateAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderTransitionStateAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "transitionState", Alias: (*Alias)(&obj)})
@@ -1794,7 +1796,7 @@ type StagedOrderUpdateItemShippingAddressAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderUpdateItemShippingAddressAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderUpdateItemShippingAddressAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "updateItemShippingAddress", Alias: (*Alias)(&obj)})
@@ -1810,7 +1812,7 @@ type StagedOrderUpdateSyncInfoAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj StagedOrderUpdateSyncInfoAction) MarshalJSON() ([]byte, error) {
 	type Alias StagedOrderUpdateSyncInfoAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "updateSyncInfo", Alias: (*Alias)(&obj)})

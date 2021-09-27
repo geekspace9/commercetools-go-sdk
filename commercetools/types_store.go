@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	json1 "github.com/segmentio/encoding/json"
 )
 
 // StoreUpdateAction uses action as discriminator attribute
@@ -327,7 +329,7 @@ type StoreUpdate struct {
 // on the discriminator value
 func (obj *StoreUpdate) UnmarshalJSON(data []byte) error {
 	type Alias StoreUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

@@ -26,7 +26,7 @@ func TestClientGetBadRequestJson(t *testing.T) {
 	defer server.Close()
 
 	_, err := client.ProductGetWithID(context.TODO(), "fake-id")
-	assert.Equal(t, "invalid character ',' looking for beginning of value", err.Error())
+	assert.Equal(t, "json: invalid character ',' looking for beginning of value: ,", err.Error())
 	assert.IsType(t, commercetools.ErrorResponse{}, err)
 }
 

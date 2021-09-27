@@ -3,13 +3,13 @@ package commercetools
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 
 	mapstructure "github.com/mitchellh/mapstructure"
 	"github.com/pkg/errors"
+	"github.com/segmentio/encoding/json"
 )
 
 type GraphQLQuery struct {

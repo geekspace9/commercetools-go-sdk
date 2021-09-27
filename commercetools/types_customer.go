@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	json1 "github.com/segmentio/encoding/json"
 )
 
 // AnonymousCartSignInMode is an enum type
@@ -853,7 +855,7 @@ type CustomerUpdate struct {
 // on the discriminator value
 func (obj *CustomerUpdate) UnmarshalJSON(data []byte) error {
 	type Alias CustomerUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

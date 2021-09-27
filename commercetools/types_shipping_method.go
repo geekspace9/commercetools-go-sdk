@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	json1 "github.com/segmentio/encoding/json"
 )
 
 // ShippingRateTierType is an enum type
@@ -488,7 +490,7 @@ type ShippingMethodUpdate struct {
 // on the discriminator value
 func (obj *ShippingMethodUpdate) UnmarshalJSON(data []byte) error {
 	type Alias ShippingMethodUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {
@@ -514,7 +516,7 @@ type ShippingRate struct {
 // on the discriminator value
 func (obj *ShippingRate) UnmarshalJSON(data []byte) error {
 	type Alias ShippingRate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.FreeAbove != nil {
@@ -553,7 +555,7 @@ type ShippingRateDraft struct {
 // on the discriminator value
 func (obj *ShippingRateDraft) UnmarshalJSON(data []byte) error {
 	type Alias ShippingRateDraft
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Tiers {

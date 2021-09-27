@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"time"
+
+	json1 "github.com/segmentio/encoding/json"
 )
 
 // ResourceTypeID is an enum type
@@ -422,7 +424,7 @@ func (obj CustomFieldSetType) MarshalJSON() ([]byte, error) {
 // on the discriminator value
 func (obj *CustomFieldSetType) UnmarshalJSON(data []byte) error {
 	type Alias CustomFieldSetType
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.ElementType != nil {
@@ -485,7 +487,7 @@ type FieldDefinition struct {
 // on the discriminator value
 func (obj *FieldDefinition) UnmarshalJSON(data []byte) error {
 	type Alias FieldDefinition
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	if obj.Type != nil {
@@ -791,7 +793,7 @@ type TypeUpdate struct {
 // on the discriminator value
 func (obj *TypeUpdate) UnmarshalJSON(data []byte) error {
 	type Alias TypeUpdate
-	if err := json.Unmarshal(data, (*Alias)(obj)); err != nil {
+	if err := json1.Unmarshal(data, (*Alias)(obj)); err != nil {
 		return err
 	}
 	for i := range obj.Actions {

@@ -3,9 +3,11 @@
 package commercetools
 
 import (
-	"encoding/json"
+	json1 "encoding/json"
 	"errors"
 	"time"
+
+	json "github.com/segmentio/encoding/json"
 )
 
 // ExtensionAction is an enum type
@@ -192,7 +194,7 @@ type ExtensionAWSLambdaDestination struct {
 // MarshalJSON override to set the discriminator value
 func (obj ExtensionAWSLambdaDestination) MarshalJSON() ([]byte, error) {
 	type Alias ExtensionAWSLambdaDestination
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Type string `json:"type"`
 		*Alias
 	}{Type: "AWSLambda", Alias: (*Alias)(&obj)})
@@ -206,7 +208,7 @@ type ExtensionAuthorizationHeaderAuthentication struct {
 // MarshalJSON override to set the discriminator value
 func (obj ExtensionAuthorizationHeaderAuthentication) MarshalJSON() ([]byte, error) {
 	type Alias ExtensionAuthorizationHeaderAuthentication
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Type string `json:"type"`
 		*Alias
 	}{Type: "AuthorizationHeader", Alias: (*Alias)(&obj)})
@@ -220,7 +222,7 @@ type ExtensionAzureFunctionsAuthentication struct {
 // MarshalJSON override to set the discriminator value
 func (obj ExtensionAzureFunctionsAuthentication) MarshalJSON() ([]byte, error) {
 	type Alias ExtensionAzureFunctionsAuthentication
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Type string `json:"type"`
 		*Alias
 	}{Type: "AzureFunctions", Alias: (*Alias)(&obj)})
@@ -234,7 +236,7 @@ type ExtensionChangeDestinationAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ExtensionChangeDestinationAction) MarshalJSON() ([]byte, error) {
 	type Alias ExtensionChangeDestinationAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeDestination", Alias: (*Alias)(&obj)})
@@ -266,7 +268,7 @@ type ExtensionChangeTriggersAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ExtensionChangeTriggersAction) MarshalJSON() ([]byte, error) {
 	type Alias ExtensionChangeTriggersAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "changeTriggers", Alias: (*Alias)(&obj)})
@@ -307,7 +309,7 @@ type ExtensionHTTPDestination struct {
 // MarshalJSON override to set the discriminator value
 func (obj ExtensionHTTPDestination) MarshalJSON() ([]byte, error) {
 	type Alias ExtensionHTTPDestination
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Type string `json:"type"`
 		*Alias
 	}{Type: "HTTP", Alias: (*Alias)(&obj)})
@@ -372,7 +374,7 @@ type ExtensionSetKeyAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ExtensionSetKeyAction) MarshalJSON() ([]byte, error) {
 	type Alias ExtensionSetKeyAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setKey", Alias: (*Alias)(&obj)})
@@ -386,7 +388,7 @@ type ExtensionSetTimeoutInMsAction struct {
 // MarshalJSON override to set the discriminator value
 func (obj ExtensionSetTimeoutInMsAction) MarshalJSON() ([]byte, error) {
 	type Alias ExtensionSetTimeoutInMsAction
-	return json.Marshal(struct {
+	return json1.Marshal(struct {
 		Action string `json:"action"`
 		*Alias
 	}{Action: "setTimeoutInMs", Alias: (*Alias)(&obj)})
